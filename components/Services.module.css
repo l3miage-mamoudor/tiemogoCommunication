@@ -11,11 +11,10 @@
 
 .row {
   position: relative;
-  overflow: hidden;
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
+  grid-template-columns: 1fr 1.1fr auto;
   gap: 32px;
-  align-items: center;
+  align-items: stretch;
   padding: 48px 0;
   border-bottom: 1px solid var(--line);
 }
@@ -27,40 +26,20 @@
   }
 }
 
-.ghost {
-  position: absolute;
-  top: -0.3em;
-  right: -0.03em;
-  z-index: 0;
-  font-family: var(--font-script);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 160px;
-  line-height: 1;
-  color: var(--paper);
-  opacity: 0.04;
-  pointer-events: none;
-  user-select: none;
-}
-
-@media (max-width: 780px) {
-  .ghost {
-    display: none;
-  }
-}
-
 .titleCol {
-  position: relative;
-  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .rowIndex {
   display: block;
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.06em;
-  color: var(--text-muted-dark);
+  font-weight: 800;
+  font-size: 34px;
+  letter-spacing: 0.01em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-muted-dark);
 }
 
 .rowTitle {
@@ -73,8 +52,9 @@
 }
 
 .rowBody {
-  position: relative;
-  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .rowText {
@@ -101,6 +81,18 @@
   border: 1px solid var(--line);
   border-radius: 100px;
   padding: 6px 14px;
+}
+
+.visualWrap {
+  width: 170px;
+}
+
+@media (max-width: 780px) {
+  .visualWrap {
+    width: 100%;
+    height: 160px;
+    order: -1;
+  }
 }
 
 .link {
