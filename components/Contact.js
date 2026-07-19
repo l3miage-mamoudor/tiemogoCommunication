@@ -3,14 +3,9 @@
 import { useState } from "react";
 import styles from "./Contact.module.css";
 
-// Remplace par le vrai lien Calendly / Cal.com du cabinet dès qu'il existe
-const BOOKING_URL = "https://calendly.com/tiemogo-communication/echange";
+const BOOKING_URL = "https://calendly.com/mamoudouroumanatou51/30min";
 
-// Formulaire géré par Formspree (gratuit, sans backend à héberger) :
-// 1. Crée un compte sur https://formspree.io
-// 2. Crée un formulaire, copie son ID (ex: "abcdwxyz")
-// 3. Remplace la valeur ci-dessous
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/VOTRE_ID_FORMSPREE";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xqevnqwa";
 
 export default function Contact() {
   const [status, setStatus] = useState("idle"); // idle | sending | success | error
@@ -57,7 +52,7 @@ export default function Contact() {
             <div className={styles.infos}>
               <div>
                 <p className={styles.infoLabel}>Email</p>
-                <p>contact@tiemogo.com</p>
+                <p>iitiemogo@gmail.com</p>
               </div>
               <div>
                 <p className={styles.infoLabel}>Téléphone</p>
@@ -134,7 +129,7 @@ export default function Contact() {
               {status === "error" && (
                 <p className={styles.errorText}>
                   L'envoi a échoué. Réessaie, ou écris-nous directement à
-                  contact@tiemogo.com.
+                  iitiemogo@gmail.com.
                 </p>
               )}
             </form>

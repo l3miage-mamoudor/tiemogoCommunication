@@ -1,30 +1,26 @@
 export default {
-  name: "teamMember",
-  title: "Membre de l'équipe",
+  name: "client",
+  title: "Client (Ils nous font confiance)",
   type: "document",
   fields: [
     {
       name: "name",
-      title: "Nom complet",
+      title: "Nom du client",
       type: "string",
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "role",
-      title: "Poste",
-      type: "string",
-    },
-    {
-      name: "signature",
-      title: "Signature",
-      type: "string",
-      description: 'Courte formule qui résume son rôle, ex. "L\'œil stratégique"',
-    },
-    {
-      name: "photo",
-      title: "Photo",
+      name: "logo",
+      title: "Logo",
       type: "image",
       options: { hotspot: true },
+      description: "Optionnel — tant qu'aucun logo n'est ajouté, le nom s'affiche seul dans le bandeau.",
+    },
+    {
+      name: "url",
+      title: "Site web",
+      type: "url",
+      description: "Optionnel",
     },
     {
       name: "order",
@@ -40,6 +36,6 @@ export default {
     },
   ],
   preview: {
-    select: { title: "name", subtitle: "role", media: "photo" },
+    select: { title: "name", media: "logo" },
   },
 };
