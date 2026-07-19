@@ -1,5 +1,10 @@
 .enter {
-  animation: pageIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* Pas de fill-mode "both"/"forwards" : une fois l'animation finie, l'élément
+     doit revenir à son état de base SANS transform. Un ancêtre avec un
+     transform actif (même translateY(0)) devient un containing block pour
+     les descendants en position fixed — ça casse le pin GSAP de
+     ChameleonReveal (position fixed censée être relative au viewport). */
+  animation: pageIn 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes pageIn {

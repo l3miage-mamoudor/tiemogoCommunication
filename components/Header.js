@@ -32,8 +32,15 @@ export default function Header() {
     setOpen(false);
   }, [pathname]);
 
+  // Le header transparent n'est lisible que sur l'accueil, où il flotte
+  // au-dessus du Hero sombre. Sur les autres pages, PageHeader peut être
+  // clair ("paper") — le texte blanc du header y serait invisible tant
+  // qu'on n'a pas scrollé. On force donc le fond solide dès le départ
+  // partout ailleurs qu'à l'accueil.
+  const solid = scrolled || pathname !== "/";
+
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
+    <header className={`${styles.header} ${solid ? styles.scrolled : ""}`}>
       <div className={`container ${styles.inner}`}>
         <Link href="/" className={styles.logo}>
           <Image
@@ -43,7 +50,7 @@ export default function Header() {
             height={36}
             className={styles.logoImg}
           />
-          <span className={styles.logoWord}>tiemogo</span>
+          <span className={styles.logoWord}>Tiemogo Communication</span>
         </Link>
 
         <nav className={`${styles.nav} ${open ? styles.navOpen : ""}`}>
