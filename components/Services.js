@@ -1,7 +1,6 @@
 import Link from "next/link";
 import styles from "./Services.module.css";
 import Reveal from "./Reveal";
-import ExpertiseVisual from "./ExpertiseVisual";
 import { client } from "@/lib/sanity/client";
 import { servicesQuery } from "@/lib/sanity/queries";
 import { EXPERTISES } from "@/lib/content";
@@ -56,9 +55,6 @@ export default async function Services({ limit, showLink = false }) {
                       ))}
                     </ul>
                   )}
-                </div>
-                <div className={styles.visualWrap}>
-                  <ExpertiseVisual index={i} />
                 </div>
               </article>
             </Reveal>
