@@ -1,6 +1,6 @@
 import styles from "./ExpertiseList.module.css";
 import Reveal from "./Reveal";
-import ExpertiseIcon from "./ExpertiseIcon";
+import ChameleonMark from "./ChameleonMark";
 import { client } from "@/lib/sanity/client";
 import { servicesQuery } from "@/lib/sanity/queries";
 import { EXPERTISES } from "@/lib/content";
@@ -64,7 +64,7 @@ export default async function ExpertiseList() {
             </span>
             <div className={styles.header}>
               <div className={styles.tile}>
-                <ExpertiseIcon index={i} size={36} className={styles.tileIcon} />
+                <ChameleonMark size={34} className={styles.tileIcon} />
               </div>
               <div>
                 <span className={styles.number}>({String(i + 1).padStart(2, "0")})</span>

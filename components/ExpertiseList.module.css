@@ -103,9 +103,20 @@
   list-style: none;
 }
 
+/* Si le dernier item se retrouve seul dans la dernière ligne (nombre total
+   impair), il occupe toute la largeur plutôt que de laisser un vide à
+   côté de lui. */
+.items > li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
 @media (max-width: 720px) {
   .items {
     grid-template-columns: 1fr;
+  }
+
+  .items > li:last-child:nth-child(odd) {
+    grid-column: auto;
   }
 }
 

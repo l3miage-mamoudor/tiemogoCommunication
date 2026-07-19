@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./Services.module.css";
 import Reveal from "./Reveal";
-import ExpertiseIcon from "./ExpertiseIcon";
+import ChameleonMark from "./ChameleonMark";
 import { client } from "@/lib/sanity/client";
 import { servicesQuery } from "@/lib/sanity/queries";
 import { EXPERTISES } from "@/lib/content";
@@ -45,7 +45,7 @@ export default async function Services({ limit, showLink = false }) {
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div className={styles.tile}>
-                  <ExpertiseIcon index={i} className={styles.tileIcon} />
+                  <ChameleonMark size={30} className={styles.tileIcon} />
                 </div>
                 <div className={styles.rowBody}>
                   <span className={styles.rowIndex}>({String(i + 1).padStart(2, "0")})</span>
