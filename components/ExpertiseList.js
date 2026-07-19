@@ -57,9 +57,6 @@ export default async function ExpertiseList() {
       {services.map((service, i) => (
         <Reveal key={service.title} delay={i * 60}>
           <article className={styles.block}>
-            <span className={styles.ghost} aria-hidden="true">
-              {String(i + 1).padStart(2, "0")}
-            </span>
             <div className={styles.titleRow}>
               <span className={styles.number}>({String(i + 1).padStart(2, "0")})</span>
               <h2 className={styles.title}>{service.title}</h2>

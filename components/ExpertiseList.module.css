@@ -15,28 +15,6 @@
   border-bottom: 1px solid var(--line);
 }
 
-.ghost {
-  position: absolute;
-  top: -0.18em;
-  right: -0.03em;
-  z-index: 0;
-  font-family: var(--font-script);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 200px;
-  line-height: 1;
-  color: var(--paper);
-  opacity: 0.04;
-  pointer-events: none;
-  user-select: none;
-}
-
-@media (max-width: 780px) {
-  .ghost {
-    font-size: 130px;
-  }
-}
-
 .titleRow {
   position: relative;
   z-index: 1;
