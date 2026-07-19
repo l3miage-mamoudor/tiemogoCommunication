@@ -1,0 +1,108 @@
+.wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+@media (max-width: 860px) {
+  .wrap {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+.infos {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.infoLabel {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--orange-deep);
+  margin-bottom: 4px;
+}
+
+.bookingBtn {
+  margin-top: 24px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+@media (max-width: 480px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted-light);
+}
+
+.field input,
+.field textarea {
+  background: #fff;
+  border: 1px solid var(--line-dark);
+  border-radius: 6px;
+  padding: 13px 16px;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--orange);
+  outline: none;
+}
+
+.form button {
+  margin-top: 6px;
+  align-self: flex-start;
+}
+
+.errorText {
+  font-size: 13px;
+  color: #b3261e;
+}
+
+.successBox {
+  align-self: flex-start;
+  background: #fff;
+  border: 1px solid var(--line-dark);
+  border-left: 3px solid var(--orange);
+  border-radius: 8px;
+  padding: 32px;
+  max-width: 420px;
+}
+
+.successTitle {
+  font-family: var(--font-display);
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+
+.successBox p:not(.successTitle) {
+  color: var(--text-muted-light);
+}

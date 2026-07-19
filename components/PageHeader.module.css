@@ -1,0 +1,21 @@
+.header {
+  padding-top: 160px;
+  padding-bottom: 64px;
+}
+
+.title {
+  margin-top: 20px;
+  font-size: clamp(36px, 6vw, 64px);
+  max-width: 780px;
+}
+
+.lead {
+  margin-top: 24px;
+  max-width: 560px;
+  font-size: 18px;
+  color: var(--text-muted-dark);
+}
+
+.header:global(.section--paper) .lead {
+  color: var(--text-muted-light);
+}

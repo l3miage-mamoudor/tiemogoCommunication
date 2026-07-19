@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.atmedia.fr)",
+      "mcp__claude-in-chrome__tabs_context_mcp",
+      "Bash(curl -s -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" https://www.atmedia.fr/ -o /c/Users/mamou/AppData/Local/Temp/claude/atmedia.html -L)",
+      "Read(//c/Users/mamou/AppData/Local/Temp/claude/**)",
+      "Bash(grep -oE '#[0-9a-fA-F]{3,6}' /c/Users/mamou/AppData/Local/Temp/claude/atmedia.html | sort | uniq -c | sort -rn | head -40)",
+      "Bash(powershell -Command \"Stop-Process -Id 3824 -Force\")",
+      "Bash(netstat -ano)",
+      "Bash(pandoc -t markdown \"C:\\\\Users\\\\mamou\\\\Downloads\\\\TIEMOGO COMMUNICATION.docx\")",
+      "Read(//c/Program Files/**)",
+      "Bash(powershell -Command \"Get-Command pandoc -ErrorAction SilentlyContinue\")",
+      "Bash(mkdir -p /tmp/tcm)",
+      "Bash(unzip -p \"C:\\\\Users\\\\mamou\\\\Downloads\\\\TIEMOGO COMMUNICATION.docx\" word/document.xml)",
+      "Read(//tmp/tcm/**)",
+      "Bash(node -e ' *)",
+      "Bash(cygpath -w /tmp/tcm/document.xml)",
+      "Bash(cp /tmp/tcm/document.xml \"./_tmp_document.xml\" && ls -la _tmp_document.xml)",
+      "Bash(node _extract.js)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+.title {
+  margin-top: 20px;
+  max-width: 620px;
+  font-size: clamp(28px, 4vw, 44px);
+}
+
+.rows {
+  margin-top: 64px;
+  border-top: 1px solid var(--line);
+}
+
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 24px;
+  padding: 40px 0 40px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.rowAccent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 0%;
+  background: var(--orange);
+  transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.row:hover .rowAccent {
+  height: 100%;
+}
+
+.rowIndex {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--text-muted-dark);
+}
+
+.rowTitle {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(22px, 2.6vw, 30px);
+  letter-spacing: -0.01em;
+}
+
+.rowText {
+  margin-top: 12px;
+  max-width: 640px;
+  font-size: 15px;
+  color: var(--text-muted-dark);
+}
+
+.rowItems {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+}
+
+.rowItems li {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted-dark);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: 6px 14px;
+}
+
+.link {
+  margin-top: 48px;
+}
+
+@media (max-width: 620px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding-left: 20px;
+  }
+}

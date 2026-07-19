@@ -1,0 +1,228 @@
+/* ============================================
+   DESIGN TOKENS — à ajuster ici, tout le reste hérite de ces valeurs
+   ============================================ */
+:root {
+  /* Couleurs — charte graphique officielle Tiemogo Communication */
+  --ink: #121212;           /* deep black */
+  --ink-soft: #1c1c1c;      /* variante de fond pour sections alternées */
+  --paper: #ffffff;         /* crisp white */
+  --paper-dim: #f0f0f0;
+  --orange: #ff2a00;        /* orange vif — couleur exacte de la charte */
+  --orange-deep: #c72100;   /* orange profond, hover / accents secondaires */
+  --line: rgba(255, 255, 255, 0.14);
+  --line-dark: rgba(18, 18, 18, 0.12);
+  --text-muted-dark: rgba(255, 255, 255, 0.64);
+  --text-muted-light: rgba(18, 18, 18, 0.6);
+
+  /* Typographie — charte graphique officielle Tiemogo Communication */
+  --font-script: var(--font-fraunces), "Times New Roman", serif;   /* accents éditoriaux (wordmark, verbes, citations) */
+  --font-display: var(--font-archivo), -apple-system, sans-serif;
+  --font-body: var(--font-archivo), -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grain fin sur toute l'interface : casse l'effet "gradient plat" et donne
+   une texture proche du papier, cohérente avec le positionnement print/édition
+   de la marque. Statique — aucune animation, donc rien à couper en reduced-motion. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+@media (pointer: fine) {
+  .siteRoot,
+  .siteRoot a,
+  .siteRoot button {
+    cursor: none;
+  }
+  .siteRoot input,
+  .siteRoot textarea {
+    cursor: text;
+  }
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+
+.section {
+  padding: 120px 0;
+}
+
+@media (max-width: 780px) {
+  .section {
+    padding: 72px 0;
+  }
+}
+
+.section--paper {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.section--paper .eyebrow {
+  color: var(--orange-deep);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 15px 26px;
+  border-radius: 100px;
+  /* --mx/--my : pull magnétique (voir MagneticButtons), composé avec le
+     translateY/scale du hover plutôt que de l'écraser. */
+  transform: translate(var(--mx, 0px), var(--my, 0px));
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, color 0.3s ease,
+    box-shadow 0.35s ease;
+}
+
+.btn--solid {
+  position: relative;
+  background: var(--orange);
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.btn--solid::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+}
+
+.btn--solid:hover {
+  transform: translate(var(--mx, 0px), var(--my, 0px)) translateY(-2px) scale(1.02);
+  background: #ff6420;
+  box-shadow: 0 16px 32px -16px rgba(255, 77, 0, 0.55);
+}
+
+.btn--solid:hover::before {
+  left: 130%;
+}
+
+.btn--pill {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.btn--pill:hover {
+  transform: translate(var(--mx, 0px), var(--my, 0px)) translateY(-2px) scale(1.02);
+  background: #fff;
+  box-shadow: 0 16px 32px -16px rgba(0, 0, 0, 0.35);
+}
+
+.btn--outline-dark {
+  border: 1px solid var(--line);
+  color: var(--paper);
+}
+
+.btn--outline-dark:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+.btn--outline-light {
+  border: 1px solid var(--line-dark);
+  color: var(--ink);
+}
+
+.btn--outline-light:hover {
+  border-color: var(--orange-deep);
+  color: var(--orange-deep);
+}
+
+:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}

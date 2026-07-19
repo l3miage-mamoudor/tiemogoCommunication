@@ -1,0 +1,49 @@
+.badge {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compact {
+  width: 128px;
+  height: 128px;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  animation: spin 26s linear infinite;
+}
+
+.outline {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.ringText {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  fill: var(--orange);
+}
+
+.mark {
+  position: relative;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

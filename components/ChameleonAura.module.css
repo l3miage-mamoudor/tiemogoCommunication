@@ -1,0 +1,73 @@
+.aura {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  --ax: 60%;
+  --ay: 28%;
+  --bx: 22%;
+  --by: 78%;
+}
+
+.blob {
+  position: absolute;
+  width: min(56vw, 640px);
+  height: min(56vw, 640px);
+  border-radius: 50%;
+  filter: blur(100px);
+  transform: translate(-50%, -50%);
+  will-change: top, left;
+}
+
+.blobA {
+  top: var(--ay);
+  left: var(--ax);
+  background: radial-gradient(circle, rgba(255, 42, 0, 0.55) 0%, rgba(255, 42, 0, 0) 70%);
+}
+
+.blobB {
+  top: var(--by);
+  left: var(--bx);
+  width: min(44vw, 520px);
+  height: min(44vw, 520px);
+  background: radial-gradient(circle, rgba(199, 33, 0, 0.5) 0%, rgba(199, 33, 0, 0) 70%);
+}
+
+.driftOnly .blobA {
+  animation: driftA 16s ease-in-out infinite;
+}
+
+.driftOnly .blobB {
+  animation: driftB 20s ease-in-out infinite;
+}
+
+@keyframes driftA {
+  0%,
+  100% {
+    top: 24%;
+    left: 62%;
+  }
+  50% {
+    top: 32%;
+    left: 70%;
+  }
+}
+
+@keyframes driftB {
+  0%,
+  100% {
+    top: 80%;
+    left: 20%;
+  }
+  50% {
+    top: 72%;
+    left: 26%;
+  }
+}
+
+@media (max-width: 780px) {
+  .blob {
+    filter: blur(70px);
+  }
+}

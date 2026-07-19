@@ -1,0 +1,60 @@
+# Site ARDENT — cabinet de communication
+
+Site vitrine en Next.js (App Router), CSS pur, sans Tailwind.
+
+## Lancer le projet en local
+
+```bash
+npm install
+npm run dev
+```
+
+Ouvre ensuite http://localhost:3000
+
+Pour le mettre en ligne rapidement (gratuit) : pousse le dossier sur GitHub
+puis connecte le repo sur https://vercel.com — déploiement automatique.
+
+## Structure
+
+```
+app/
+  layout.js       ? polices + métadonnées (titre, description)
+  page.js         ? assemble toutes les sections
+  globals.css     ? TOUS les tokens de design (couleurs, typo) sont ici
+components/
+  Header.js       ? nav + logo
+  Hero.js         ? titre principal + mots animés (Raconter/Convaincre/...)
+  Services.js     ? liste des 6 services
+  Team.js         ? équipe
+  Portfolio.js    ? réalisations
+  Blog.js         ? actus
+  Contact.js      ? formulaire + coordonnées
+  Footer.js
+```
+
+## Checklist : ce qu'il reste à remplacer dès que ton ami envoie les infos
+
+- [ ] **Nom du cabinet** : remplacer "ARDENT" dans `Header.js`, `Footer.js`,
+      `app/layout.js` (titre + description)
+- [ ] **Logo** : déposer le fichier dans `public/logo.svg` (ou .png), puis dans
+      `Header.js` remplacer le texte "ARDENT." par
+      `<img src="/logo.svg" alt="Nom du cabinet" />`
+- [ ] **Accroche / texte du Hero** : `Hero.js` (le paragraphe `lead`)
+- [ ] **Services réels** : tableau `SERVICES` dans `Services.js`
+- [ ] **Équipe réelle** : tableau `TEAM` dans `Team.js` — ajoute les photos en
+      renseignant le champ `photo` (chemin vers l'image dans `public/`)
+- [ ] **Projets/portfolio réels** : tableau `PROJECTS` dans `Portfolio.js`
+- [ ] **Articles réels** (ou à supprimer si pas encore de blog) : tableau
+      `POSTS` dans `Blog.js`
+- [ ] **Coordonnées** : email, téléphone, adresse dans `Contact.js`
+      (et l'adresse mailto dans la fonction `handleSubmit`)
+
+## Couleurs (à ajuster si besoin)
+
+Tout est centralisé dans `app/globals.css`, en haut du fichier (`:root`) :
+- `--orange` : orange signal, couleur de marque principale
+- `--ink` : noir de fond
+- `--paper` : blanc cassé utilisé pour les sections claires (Équipe, Actus)
+
+Si ton ami a un orange précis (code hex du logo), remplace juste
+`--orange` et `--orange-deep` par ses valeurs — tout le site suivra.
