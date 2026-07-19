@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "./Header.module.css";
 
 const LINKS = [
@@ -15,6 +17,7 @@ const LINKS = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     function handleScroll() {
@@ -25,10 +28,14 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div className={`container ${styles.inner}`}>
-        <a href="/" className={styles.logo}>
+        <Link href="/" className={styles.logo}>
           <Image
             src="/logo-mark.jpg"
             alt="Tiemogo Communication"
@@ -37,25 +44,34 @@ export default function Header() {
             className={styles.logoImg}
           />
           <span className={styles.logoWord}>tiemogo</span>
-        </a>
+        </Link>
 
         <nav className={`${styles.nav} ${open ? styles.navOpen : ""}`}>
-          {LINKS.map((link) => (
-            <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
-              {link.label}
-            </a>
-          ))}
-          <a href="/contact" className={`btn btn--pill ${styles.ctaMobile}`}>
+          {LINKS.map((link) => {
+            const active = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={active ? styles.active : ""}
+                aria-current={active ? "page" : undefined}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+          <Link href="/contact" className={`btn btn--pill ${styles.ctaMobile}`}>
             Parlons de votre projet
-          </a>
+          </Link>
         </nav>
 
-        <a href="/contact" className={`btn btn--pill ${styles.cta}`}>
+        <Link href="/contact" className={`btn btn--pill ${styles.cta}`}>
           Parlons de votre projet
-        </a>
+        </Link>
 
         <button
-          className={styles.burger}
+          className={`${styles.burger} ${open ? styles.burgerOpen : ""}`}
           aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}

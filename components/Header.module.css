@@ -72,6 +72,15 @@
   transform-origin: left;
 }
 
+.active {
+  color: var(--orange);
+}
+
+.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
 .ctaMobile {
   display: none;
 }
@@ -87,39 +96,54 @@
   width: 26px;
 }
 
+.burgerOpen span:first-child {
+  transform: translateY(3.5px) rotate(45deg);
+}
+
+.burgerOpen span:last-child {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
+
 .burger span {
   height: 2px;
   width: 100%;
   background: var(--paper);
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 @media (max-width: 860px) {
   .nav {
     position: fixed;
-    top: 76px;
-    left: 0;
-    right: 0;
+    inset: 0;
+    z-index: -1;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 22px;
-    padding: 28px 20px 36px;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 32px;
     background: var(--ink);
-    border-bottom: 1px solid var(--line);
-    transform: translateY(-8px);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.35s ease;
+  }
+
+  .nav a {
+    font-family: var(--font-script);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(28px, 9vw, 44px);
   }
 
   .navOpen {
-    transform: translateY(0);
+    z-index: 90;
     opacity: 1;
     pointer-events: auto;
   }
 
   .ctaMobile {
     display: inline-flex;
-    margin-top: 8px;
+    margin-top: 12px;
   }
 
   .cta {
@@ -128,5 +152,6 @@
 
   .burger {
     display: flex;
+    z-index: 95;
   }
 }

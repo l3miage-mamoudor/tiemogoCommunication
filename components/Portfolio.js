@@ -1,9 +1,12 @@
+import Link from "next/link";
 import styles from "./Portfolio.module.css";
 import Reveal from "./Reveal";
+import ScalePattern from "./ScalePattern";
 import { client } from "@/lib/sanity/client";
 import { projectsQuery } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
 import { EXPERTISES, REALISATION_TEASERS, FALLBACK_PROJECTS } from "@/lib/content";
+import { hashSeed, hueForSeed } from "@/lib/palette";
 
 async function getProjects() {
   if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return FALLBACK_PROJECTS;
@@ -19,30 +22,17 @@ async function getProjects() {
   }
 }
 
-// Hash déterministe (même nom de client => même composition à chaque
-// rendu) pour varier l'inclinaison du dégradé de fond tant qu'aucune vraie
-// photo de projet n'est disponible.
-function hashSeed(str) {
-  let h = 0;
-  for (let i = 0; i < str.length; i++) {
-    h = (h << 5) - h + str.charCodeAt(i);
-    h |= 0;
-  }
-  return Math.abs(h);
-}
-
-const TILTS = [8, -6, 12, -10, 5];
-
+// Tuile adaptative : tant qu'aucune vraie photo de projet n'existe, la
+// vignette reçoit une teinte stable (dérivée du nom du client, jamais
+// aléatoire) + un filigrane d'écailles, plutôt qu'un simple rond-initiale.
 function ProjectCard({ project }) {
   const letter = project.client.charAt(0).toUpperCase();
-  const tilt = TILTS[hashSeed(project.client) % TILTS.length];
+  const hue = hueForSeed(project.client);
+  const patternId = `portfolio-scale-${hashSeed(project.client)}`;
 
   return (
     <article className={styles.card}>
-      <div
-        className={styles.thumb}
-        style={project.image ? undefined : { "--tilt": `${tilt}deg` }}
-      >
+      <div className={styles.thumb} style={{ "--tile-hue": hue }}>
         {project.image ? (
           <img
             src={urlFor(project.image).width(800).height(500).url()}
@@ -50,10 +40,10 @@ function ProjectCard({ project }) {
           />
         ) : (
           <>
+            <ScalePattern id={patternId} className={styles.pattern} opacity={0.4} />
             <span className={styles.ghostLetter} aria-hidden="true">
               {letter}
             </span>
-            <span className={styles.monogram}>{letter}</span>
           </>
         )}
         <span className={styles.hoverLink}>
@@ -67,9 +57,16 @@ function ProjectCard({ project }) {
 }
 
 function TeaserCard({ expertise }) {
+  const hue = hueForSeed(expertise.slug);
+  const patternId = `teaser-scale-${hashSeed(expertise.slug)}`;
+
   return (
     <article className={`${styles.card} ${styles.teaser}`}>
-      <div className={`${styles.thumb} ${styles.teaserThumb}`}>
+      <div
+        className={`${styles.thumb} ${styles.teaserThumb}`}
+        style={{ "--tile-hue": hue }}
+      >
+        <ScalePattern id={patternId} className={styles.pattern} opacity={0.18} />
         <span className={styles.soon}>Bientôt</span>
       </div>
       <p className={styles.client}>{expertise.title}</p>
@@ -133,9 +130,9 @@ export default async function Portfolio({ limit, showLink = false }) {
         )}
 
         {showLink && (
-          <a href="/realisations" className={`btn btn--outline-light ${styles.link}`}>
+          <Link href="/realisations" className={`btn btn--outline-light ${styles.link}`}>
             Voir toutes nos réalisations
-          </a>
+          </Link>
         )}
       </div>
     </section>

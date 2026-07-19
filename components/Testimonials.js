@@ -54,7 +54,10 @@ export default async function Testimonials() {
           {featured && (
             <Reveal>
               <blockquote className={styles.featured}>
-                <p className={styles.featuredQuote}>&laquo; {featured.quote} &raquo;</p>
+                <span className={styles.mark} aria-hidden="true">
+                  &ldquo;
+                </span>
+                <p className={styles.featuredQuote}>{featured.quote}</p>
                 <footer className={styles.footer}>
                   <p className={styles.name}>{featured.name}</p>
                   <p className={styles.role}>{featured.role}</p>

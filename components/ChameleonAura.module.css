@@ -23,7 +23,17 @@
 .blobA {
   top: var(--ay);
   left: var(--ax);
-  background: radial-gradient(circle, rgba(255, 42, 0, 0.55) 0%, rgba(255, 42, 0, 0) 70%);
+  background: radial-gradient(circle, var(--hue-signal) 0%, transparent 70%);
+  /* Dérive lentement du signal vers l'ambre en fonction du scroll global
+     (--scroll-hue, 0→1, poussé par ScrollProgress) : le halo "s'adapte"
+     littéralement à la position dans le parcours. Navigateurs sans
+     color-mix() gardent le dégradé fixe ci-dessus. */
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--hue-signal), var(--hue-amber) calc(var(--scroll-hue, 0) * 100%)) 0%,
+    transparent 70%
+  );
+  opacity: 0.55;
 }
 
 .blobB {
@@ -31,7 +41,13 @@
   left: var(--bx);
   width: min(44vw, 520px);
   height: min(44vw, 520px);
-  background: radial-gradient(circle, rgba(199, 33, 0, 0.5) 0%, rgba(199, 33, 0, 0) 70%);
+  background: radial-gradient(circle, var(--hue-rust) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--hue-rust), var(--hue-emerald) calc(var(--scroll-hue, 0) * 100%)) 0%,
+    transparent 70%
+  );
+  opacity: 0.5;
 }
 
 .driftOnly .blobA {

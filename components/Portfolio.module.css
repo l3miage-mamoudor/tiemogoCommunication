@@ -20,25 +20,49 @@
 .thumb {
   position: relative;
   aspect-ratio: 16 / 10;
-  background: linear-gradient(var(--tilt, 10deg), var(--paper-dim) 60%, rgba(199, 33, 0, 0.08) 100%);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--tile-hue, var(--orange)) 20%, var(--paper-dim)) 0%,
+    var(--paper-dim) 70%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
 
+.pattern {
+  color: var(--tile-hue, var(--orange));
+  opacity: 0.7;
+  transform: scale(1);
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .pattern {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
 .ghostLetter {
   position: absolute;
-  right: -0.1em;
-  bottom: -0.32em;
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: 220px;
+  right: -0.06em;
+  bottom: -0.3em;
+  z-index: 1;
+  font-family: var(--font-script);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 260px;
   line-height: 1;
-  color: var(--ink);
-  opacity: 0.05;
+  color: color-mix(in srgb, var(--tile-hue, var(--orange)) 55%, var(--ink));
+  opacity: 0.16;
   pointer-events: none;
   user-select: none;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+.card:hover .ghostLetter {
+  opacity: 0.26;
+  transform: translateY(-6px);
 }
 
 .thumb img {
@@ -50,17 +74,6 @@
 
 .card:hover .thumb img {
   transform: scale(1.04);
-}
-
-.monogram {
-  position: relative;
-  z-index: 1;
-  font-family: var(--font-script);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 56px;
-  color: var(--orange-deep);
-  opacity: 0.5;
 }
 
 .hoverLink {
@@ -126,6 +139,8 @@
 }
 
 .soon {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 12px;

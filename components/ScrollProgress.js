@@ -15,6 +15,7 @@ export default function ScrollProgress() {
       const max = scrollHeight - clientHeight;
       const progress = max > 0 ? (scrollTop / max) * 100 : 0;
       bar.style.transform = `scaleX(${progress / 100})`;
+      document.documentElement.style.setProperty("--scroll-hue", String(progress / 100));
     }
 
     handleScroll();

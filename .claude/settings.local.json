@@ -20,7 +20,9 @@
       "Bash(node _extract.js)",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(tasklist //FI \"IMAGENAME eq node.exe\")",
+      "Bash(powershell -Command \"Get-Process node -ErrorAction SilentlyContinue | Select-Object Id,Path\")"
     ]
   }
 }

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./Blog.module.css";
 import { client } from "@/lib/sanity/client";
 import { postsQuery } from "@/lib/sanity/queries";
@@ -57,18 +58,18 @@ export default async function Blog({ limit, showLink = false }) {
       <div className="container">
         <div className={styles.list}>
           {posts.map((post) => (
-            <a key={post.title} href={`/blog/${post.slug}`} className={styles.post}>
+            <Link key={post.title} href={`/blog/${post.slug}`} className={styles.post}>
               <p className={styles.date}>{formatDate(post.date)}</p>
               <h3 className={styles.postTitle}>{post.title}</h3>
               <p className={styles.excerpt}>{post.excerpt}</p>
-            </a>
+            </Link>
           ))}
         </div>
 
         {showLink && (
-          <a href="/blog" className={`btn btn--outline-dark ${styles.link}`}>
+          <Link href="/blog" className={`btn btn--outline-dark ${styles.link}`}>
             Voir tous les articles
-          </a>
+          </Link>
         )}
       </div>
     </section>

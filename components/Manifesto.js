@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./Manifesto.module.css";
 import { ORIGIN_STORY } from "@/lib/content";
 
@@ -17,9 +18,9 @@ export default function Manifesto() {
             {paragraph}
           </p>
         ))}
-        <a href="/agence" className="btn btn--pill">
+        <Link href="/agence" className="btn btn--pill">
           En savoir +
-        </a>
+        </Link>
       </div>
     </section>
   );

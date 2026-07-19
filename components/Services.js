@@ -1,8 +1,10 @@
+import Link from "next/link";
 import styles from "./Services.module.css";
 import Reveal from "./Reveal";
 import { client } from "@/lib/sanity/client";
 import { servicesQuery } from "@/lib/sanity/queries";
 import { EXPERTISES } from "@/lib/content";
+import { hueForIndex } from "@/lib/palette";
 
 // Utilisé tant que le projet Sanity n'est pas configuré, ou si aucun
 // service n'a encore été ajouté dans le Studio (/studio)
@@ -38,8 +40,14 @@ export default async function Services({ limit, showLink = false }) {
           {services.map((service, i) => (
             <Reveal key={service.title} delay={i * 80}>
               <article className={styles.row}>
-                <span className={styles.rowAccent} aria-hidden="true" />
-                <span className={styles.rowIndex}>({String(i + 1).padStart(2, "0")})</span>
+                <span
+                  className={styles.rowAccent}
+                  style={{ background: hueForIndex(i) }}
+                  aria-hidden="true"
+                />
+                <span className={styles.rowIndex} style={{ color: hueForIndex(i) }}>
+                  ({String(i + 1).padStart(2, "0")})
+                </span>
                 <div className={styles.rowBody}>
                   <h3 className={styles.rowTitle}>{service.title}</h3>
                   <p className={styles.rowText}>{service.description}</p>
@@ -57,9 +65,9 @@ export default async function Services({ limit, showLink = false }) {
         </div>
 
         {showLink && (
-          <a href="/expertises" className={`btn btn--outline-dark ${styles.link}`}>
+          <Link href="/expertises" className={`btn btn--outline-dark ${styles.link}`}>
             Voir toutes nos expertises
-          </a>
+          </Link>
         )}
       </div>
     </section>

@@ -1,8 +1,10 @@
 import styles from "./Team.module.css";
+import ScalePattern from "./ScalePattern";
 import { client } from "@/lib/sanity/client";
 import { teamQuery } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image";
 import { TEAM } from "@/lib/content";
+import { hashSeed, hueForSeed } from "@/lib/palette";
 
 // Utilisé tant que le projet Sanity n'est pas configuré, ou si aucun
 // membre n'a encore été ajouté dans le Studio (/studio)
@@ -44,14 +46,24 @@ export default async function Team() {
         <div className={styles.grid}>
           {team.map((member) => (
             <div key={member.name} className={styles.member}>
-              <div className={styles.avatar}>
+              <div
+                className={styles.avatar}
+                style={{ "--tile-hue": hueForSeed(member.name) }}
+              >
                 {member.photo ? (
                   <img
                     src={urlFor(member.photo).width(300).height(300).url()}
                     alt={member.name}
                   />
                 ) : (
-                  <span>{initials(member.name)}</span>
+                  <>
+                    <ScalePattern
+                      id={`team-scale-${hashSeed(member.name)}`}
+                      className={styles.pattern}
+                      opacity={0.5}
+                    />
+                    <span className={styles.initials}>{initials(member.name)}</span>
+                  </>
                 )}
               </div>
               <p className={styles.name}>{member.name}</p>

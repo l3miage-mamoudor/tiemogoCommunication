@@ -6,6 +6,16 @@
   padding: 22px 0;
 }
 
+.label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted-dark);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
 .track {
   display: flex;
   width: max-content;

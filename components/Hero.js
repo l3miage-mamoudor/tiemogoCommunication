@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import RotatingBadge from "./RotatingBadge";
 import ChameleonAura from "./ChameleonAura";
 import styles from "./Hero.module.css";
+import { hueForIndex } from "@/lib/palette";
 
 // Verbes alignés sur le positionnement réel de Tiemogo : adaptation et sur-mesure
 const VERBS = ["s'adapter.", "se différencier.", "marquer.", "durer."];
@@ -32,7 +34,11 @@ export default function Hero() {
           <br />
           Elle sait{" "}
           <span className={styles.verbWrap} aria-live="polite">
-            <span key={index} className={styles.verb}>
+            <span
+              key={index}
+              className={styles.verb}
+              style={{ color: hueForIndex(index) }}
+            >
               {VERBS[index]}
             </span>
           </span>
@@ -65,12 +71,12 @@ export default function Hero() {
               communication digitale.
             </p>
             <div className={styles.actions}>
-              <a href="/contact" className="btn btn--pill">
+              <Link href="/contact" className="btn btn--pill">
                 Parlons de votre projet
-              </a>
-              <a href="/realisations" className="btn btn--outline-dark">
+              </Link>
+              <Link href="/realisations" className="btn btn--outline-dark">
                 Voir nos réalisations
-              </a>
+              </Link>
             </div>
           </div>
         </div>

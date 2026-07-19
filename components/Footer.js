@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import ChameleonAura from "./ChameleonAura";
 import styles from "./Footer.module.css";
 import { TAGLINE } from "@/lib/content";
 
@@ -23,17 +25,22 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className="container">
         <div className={styles.cta}>
-          <p className="eyebrow">Un projet en tête ?</p>
-          <h2 className={styles.ctaTitle}>
-            Parlons de votre <em>prochaine</em> communication.
-          </h2>
-          <a href="/contact" className="btn btn--pill">
-            Parlons de votre projet
-          </a>
+          <div className={styles.auraDim} aria-hidden="true">
+            <ChameleonAura />
+          </div>
+          <div className={styles.ctaContent}>
+            <p className="eyebrow">Un projet en tête ?</p>
+            <h2 className={styles.ctaTitle}>
+              Parlons de votre <em>prochaine</em> communication.
+            </h2>
+            <Link href="/contact" className="btn btn--pill">
+              Parlons de votre projet
+            </Link>
+          </div>
         </div>
 
         <div className={styles.top}>
-          <a href="/" className={styles.brand}>
+          <Link href="/" className={styles.brand}>
             <Image
               src="/logo-mark.jpg"
               alt="Tiemogo Communication"
@@ -42,7 +49,7 @@ export default function Footer() {
               className={styles.logo}
             />
             <span>tiemogo communication</span>
-          </a>
+          </Link>
           <span className={styles.badge}>{TAGLINE}</span>
         </div>
 
@@ -51,9 +58,9 @@ export default function Footer() {
             <p className={styles.colTitle}>Navigation</p>
             <nav className={styles.colLinks}>
               {NAV_LINKS.map((l) => (
-                <a key={l.href} href={l.href}>
+                <Link key={l.href} href={l.href}>
                   {l.label}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>

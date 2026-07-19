@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import { client } from "@/lib/sanity/client";
 import { postBySlugQuery } from "@/lib/sanity/queries";
@@ -65,7 +66,7 @@ export default async function PostPage({ params }) {
           <h1 className={styles.title}>Article introuvable</h1>
           <p className={styles.lead}>
             Cet article n'existe pas ou plus. Retourne au{" "}
-            <a href="/blog">blog</a>.
+            <Link href="/blog">blog</Link>.
           </p>
         </div>
       </section>
@@ -87,9 +88,9 @@ export default async function PostPage({ params }) {
           )}
         </div>
 
-        <a href="/blog" className={`btn btn--outline-light ${styles.back}`}>
+        <Link href="/blog" className={`btn btn--outline-light ${styles.back}`}>
           ← Retour au blog
-        </a>
+        </Link>
       </div>
     </article>
   );
