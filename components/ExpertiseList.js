@@ -4,7 +4,6 @@ import ExpertiseIcon from "./ExpertiseIcon";
 import { client } from "@/lib/sanity/client";
 import { servicesQuery } from "@/lib/sanity/queries";
 import { EXPERTISES } from "@/lib/content";
-import { hueForIndex } from "@/lib/palette";
 
 const FALLBACK_SERVICES = EXPERTISES;
 
@@ -25,13 +24,13 @@ async function getServices() {
 // item peut être une simple string (contenu Sanity minimal) ou un objet
 // { title, tagline, text[] } (texte complet du document de marque) — les
 // deux s'affichent, seul le second ouvre un accordéon avec le texte intégral.
-function ExpertiseItem({ item, hue }) {
+function ExpertiseItem({ item }) {
   if (typeof item === "string") {
     return <li className={styles.itemSimple}>{item}</li>;
   }
 
   return (
-    <li className={styles.item} style={{ "--tile-hue": hue }}>
+    <li className={styles.item}>
       <details className={styles.details}>
         <summary className={styles.summary}>
           <div>
@@ -64,13 +63,11 @@ export default async function ExpertiseList() {
               {String(i + 1).padStart(2, "0")}
             </span>
             <div className={styles.header}>
-              <div className={styles.tile} style={{ "--tile-hue": hueForIndex(i) }}>
+              <div className={styles.tile}>
                 <ExpertiseIcon index={i} size={36} className={styles.tileIcon} />
               </div>
               <div>
-                <span className={styles.number} style={{ color: hueForIndex(i) }}>
-                  ({String(i + 1).padStart(2, "0")})
-                </span>
+                <span className={styles.number}>({String(i + 1).padStart(2, "0")})</span>
                 <h2 className={styles.title}>{service.title}</h2>
               </div>
             </div>
@@ -78,7 +75,7 @@ export default async function ExpertiseList() {
             {service.items?.length > 0 && (
               <ul className={styles.items}>
                 {service.items.map((item) => (
-                  <ExpertiseItem key={item.title || item} item={item} hue={hueForIndex(i)} />
+                  <ExpertiseItem key={item.title || item} item={item} />
                 ))}
               </ul>
             )}

@@ -14,8 +14,8 @@
   display: grid;
   grid-template-columns: 84px 1fr;
   align-items: start;
-  gap: 32px;
-  padding: 44px 0 44px 28px;
+  gap: 36px;
+  padding: 56px 0 56px 28px;
   border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
@@ -61,23 +61,24 @@
   z-index: 1;
   width: 84px;
   height: 84px;
-  border-radius: 16px;
+  border-radius: 14px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: color-mix(in srgb, var(--tile-hue, var(--orange)) 16%, var(--ink-soft));
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--line);
+  transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .row:hover .tile {
+  border-color: var(--orange);
   transform: translateY(-4px);
 }
 
 .tileIcon {
   position: relative;
   z-index: 1;
-  color: var(--tile-hue, var(--orange));
+  color: var(--orange);
 }
 
 .rowIndex {
@@ -87,6 +88,7 @@
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.04em;
+  color: var(--orange);
 }
 
 .rowBody {
@@ -95,7 +97,7 @@
 }
 
 .rowTitle {
-  margin-top: 6px;
+  margin-top: 8px;
   font-family: var(--font-body);
   font-weight: 700;
   font-size: clamp(22px, 2.6vw, 30px);
@@ -103,14 +105,15 @@
 }
 
 .rowText {
-  margin-top: 12px;
+  margin-top: 16px;
   max-width: 640px;
   font-size: 15px;
+  line-height: 1.6;
   color: var(--text-muted-dark);
 }
 
 .rowItems {
-  margin-top: 18px;
+  margin-top: 22px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;

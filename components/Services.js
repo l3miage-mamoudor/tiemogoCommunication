@@ -5,7 +5,6 @@ import ExpertiseIcon from "./ExpertiseIcon";
 import { client } from "@/lib/sanity/client";
 import { servicesQuery } from "@/lib/sanity/queries";
 import { EXPERTISES } from "@/lib/content";
-import { hueForIndex } from "@/lib/palette";
 
 // Utilisé tant que le projet Sanity n'est pas configuré, ou si aucun
 // service n'a encore été ajouté dans le Studio (/studio)
@@ -41,21 +40,15 @@ export default async function Services({ limit, showLink = false }) {
           {services.map((service, i) => (
             <Reveal key={service.title} delay={i * 80}>
               <article className={styles.row}>
-                <span
-                  className={styles.rowAccent}
-                  style={{ background: hueForIndex(i) }}
-                  aria-hidden="true"
-                />
+                <span className={styles.rowAccent} aria-hidden="true" />
                 <span className={styles.ghost} aria-hidden="true">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <div className={styles.tile} style={{ "--tile-hue": hueForIndex(i) }}>
+                <div className={styles.tile}>
                   <ExpertiseIcon index={i} className={styles.tileIcon} />
                 </div>
                 <div className={styles.rowBody}>
-                  <span className={styles.rowIndex} style={{ color: hueForIndex(i) }}>
-                    ({String(i + 1).padStart(2, "0")})
-                  </span>
+                  <span className={styles.rowIndex}>({String(i + 1).padStart(2, "0")})</span>
                   <h3 className={styles.rowTitle}>{service.title}</h3>
                   <p className={styles.rowText}>{service.description}</p>
                   {service.items?.length > 0 && (
