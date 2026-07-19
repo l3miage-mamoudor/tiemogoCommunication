@@ -1,7 +1,6 @@
 import styles from "./ExpertiseList.module.css";
 import Reveal from "./Reveal";
 import ExpertiseIcon from "./ExpertiseIcon";
-import ScalePattern from "./ScalePattern";
 import { client } from "@/lib/sanity/client";
 import { servicesQuery } from "@/lib/sanity/queries";
 import { EXPERTISES } from "@/lib/content";
@@ -66,7 +65,6 @@ export default async function ExpertiseList() {
             </span>
             <div className={styles.header}>
               <div className={styles.tile} style={{ "--tile-hue": hueForIndex(i) }}>
-                <ScalePattern id={`expertise-scale-${i}`} className={styles.tilePattern} opacity={0.5} />
                 <ExpertiseIcon index={i} size={36} className={styles.tileIcon} />
               </div>
               <div>

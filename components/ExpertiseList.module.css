@@ -53,10 +53,6 @@
   background: color-mix(in srgb, var(--tile-hue, var(--orange)) 12%, var(--paper-dim));
 }
 
-.tilePattern {
-  color: var(--tile-hue, var(--orange));
-}
-
 .tileIcon {
   position: relative;
   z-index: 1;
