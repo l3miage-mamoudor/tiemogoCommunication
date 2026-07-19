@@ -1,6 +1,8 @@
 import Link from "next/link";
 import styles from "./Services.module.css";
 import Reveal from "./Reveal";
+import ExpertiseIcon from "./ExpertiseIcon";
+import ScalePattern from "./ScalePattern";
 import { client } from "@/lib/sanity/client";
 import { servicesQuery } from "@/lib/sanity/queries";
 import { EXPERTISES } from "@/lib/content";
@@ -45,10 +47,17 @@ export default async function Services({ limit, showLink = false }) {
                   style={{ background: hueForIndex(i) }}
                   aria-hidden="true"
                 />
-                <span className={styles.rowIndex} style={{ color: hueForIndex(i) }}>
-                  ({String(i + 1).padStart(2, "0")})
+                <span className={styles.ghost} aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
                 </span>
+                <div className={styles.tile} style={{ "--tile-hue": hueForIndex(i) }}>
+                  <ScalePattern id={`services-scale-${i}`} className={styles.tilePattern} opacity={0.5} />
+                  <ExpertiseIcon index={i} className={styles.tileIcon} />
+                </div>
                 <div className={styles.rowBody}>
+                  <span className={styles.rowIndex} style={{ color: hueForIndex(i) }}>
+                    ({String(i + 1).padStart(2, "0")})
+                  </span>
                   <h3 className={styles.rowTitle}>{service.title}</h3>
                   <p className={styles.rowText}>{service.description}</p>
                   {service.items?.length > 0 && (

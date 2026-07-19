@@ -1,8 +1,11 @@
 import styles from "./ExpertiseList.module.css";
 import Reveal from "./Reveal";
+import ExpertiseIcon from "./ExpertiseIcon";
+import ScalePattern from "./ScalePattern";
 import { client } from "@/lib/sanity/client";
 import { servicesQuery } from "@/lib/sanity/queries";
 import { EXPERTISES } from "@/lib/content";
+import { hueForIndex } from "@/lib/palette";
 
 const FALLBACK_SERVICES = EXPERTISES;
 
@@ -23,17 +26,19 @@ async function getServices() {
 // item peut être une simple string (contenu Sanity minimal) ou un objet
 // { title, tagline, text[] } (texte complet du document de marque) — les
 // deux s'affichent, seul le second ouvre un accordéon avec le texte intégral.
-function ExpertiseItem({ item }) {
+function ExpertiseItem({ item, hue }) {
   if (typeof item === "string") {
     return <li className={styles.itemSimple}>{item}</li>;
   }
 
   return (
-    <li className={styles.item}>
+    <li className={styles.item} style={{ "--tile-hue": hue }}>
       <details className={styles.details}>
         <summary className={styles.summary}>
-          <span className={styles.itemTitle}>{item.title}</span>
-          {item.tagline && <span className={styles.itemTagline}>{item.tagline}</span>}
+          <div>
+            <span className={styles.itemTitle}>{item.title}</span>
+            {item.tagline && <span className={styles.itemTagline}>{item.tagline}</span>}
+          </div>
           <span className={styles.chevron} aria-hidden="true" />
         </summary>
         {item.text?.length > 0 && (
@@ -56,18 +61,29 @@ export default async function ExpertiseList() {
       {services.map((service, i) => (
         <Reveal key={service.title} delay={i * 60}>
           <article className={styles.block}>
-            <span className={styles.number}>{String(i + 1).padStart(2, "0")}</span>
-            <div>
-              <h2 className={styles.title}>{service.title}</h2>
-              <p className={styles.text}>{service.description}</p>
-              {service.items?.length > 0 && (
-                <ul className={styles.items}>
-                  {service.items.map((item) => (
-                    <ExpertiseItem key={item.title || item} item={item} />
-                  ))}
-                </ul>
-              )}
+            <span className={styles.ghost} aria-hidden="true">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <div className={styles.header}>
+              <div className={styles.tile} style={{ "--tile-hue": hueForIndex(i) }}>
+                <ScalePattern id={`expertise-scale-${i}`} className={styles.tilePattern} opacity={0.5} />
+                <ExpertiseIcon index={i} size={36} className={styles.tileIcon} />
+              </div>
+              <div>
+                <span className={styles.number} style={{ color: hueForIndex(i) }}>
+                  ({String(i + 1).padStart(2, "0")})
+                </span>
+                <h2 className={styles.title}>{service.title}</h2>
+              </div>
             </div>
+            <p className={styles.text}>{service.description}</p>
+            {service.items?.length > 0 && (
+              <ul className={styles.items}>
+                {service.items.map((item) => (
+                  <ExpertiseItem key={item.title || item} item={item} hue={hueForIndex(i)} />
+                ))}
+              </ul>
+            )}
           </article>
         </Reveal>
       ))}
