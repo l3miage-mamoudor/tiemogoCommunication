@@ -1,6 +1,5 @@
 import styles from "./ExpertiseList.module.css";
 import Reveal from "./Reveal";
-import ChameleonMark from "./ChameleonMark";
 import { client } from "@/lib/sanity/client";
 import { servicesQuery } from "@/lib/sanity/queries";
 import { EXPERTISES } from "@/lib/content";
@@ -33,10 +32,8 @@ function ExpertiseItem({ item }) {
     <li className={styles.item}>
       <details className={styles.details}>
         <summary className={styles.summary}>
-          <div>
-            <span className={styles.itemTitle}>{item.title}</span>
-            {item.tagline && <span className={styles.itemTagline}>{item.tagline}</span>}
-          </div>
+          <span className={styles.itemTitle}>{item.title}</span>
+          {item.tagline && <span className={styles.itemTagline}>{item.tagline}</span>}
           <span className={styles.chevron} aria-hidden="true" />
         </summary>
         {item.text?.length > 0 && (
@@ -59,26 +56,22 @@ export default async function ExpertiseList() {
       {services.map((service, i) => (
         <Reveal key={service.title} delay={i * 60}>
           <article className={styles.block}>
-            <span className={styles.ghost} aria-hidden="true">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <div className={styles.header}>
-              <div className={styles.tile}>
-                <ChameleonMark size={34} className={styles.tileIcon} />
-              </div>
-              <div>
-                <span className={styles.number}>({String(i + 1).padStart(2, "0")})</span>
+            <div className={styles.row}>
+              <div className={styles.titleCol}>
+                <span className={styles.number}>{String(i + 1).padStart(2, "0")}</span>
                 <h2 className={styles.title}>{service.title}</h2>
               </div>
+              <div className={styles.textCol}>
+                <p className={styles.text}>{service.description}</p>
+                {service.items?.length > 0 && (
+                  <ul className={styles.items}>
+                    {service.items.map((item) => (
+                      <ExpertiseItem key={item.title || item} item={item} />
+                    ))}
+                  </ul>
+                )}
+              </div>
             </div>
-            <p className={styles.text}>{service.description}</p>
-            {service.items?.length > 0 && (
-              <ul className={styles.items}>
-                {service.items.map((item) => (
-                  <ExpertiseItem key={item.title || item} item={item} />
-                ))}
-              </ul>
-            )}
           </article>
         </Reveal>
       ))}

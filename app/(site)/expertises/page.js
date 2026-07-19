@@ -12,9 +12,8 @@ export default function ExpertisesPage() {
         eyebrow="Expertises"
         title="Ce que nous faisons vraiment (bien)"
         lead="Cinq domaines d'intervention, pensés pour se compléter et construire un discours cohérent du premier au dernier point de contact."
-        paper
       />
-      <section className="section section--paper">
+      <section className="section">
         <div className="container">
           <ExpertiseList />
         </div>

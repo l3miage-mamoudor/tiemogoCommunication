@@ -1,7 +1,6 @@
 import Link from "next/link";
 import styles from "./Services.module.css";
 import Reveal from "./Reveal";
-import ChameleonMark from "./ChameleonMark";
 import { client } from "@/lib/sanity/client";
 import { servicesQuery } from "@/lib/sanity/queries";
 import { EXPERTISES } from "@/lib/content";
@@ -40,16 +39,11 @@ export default async function Services({ limit, showLink = false }) {
           {services.map((service, i) => (
             <Reveal key={service.title} delay={i * 80}>
               <article className={styles.row}>
-                <span className={styles.rowAccent} aria-hidden="true" />
-                <span className={styles.ghost} aria-hidden="true">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className={styles.tile}>
-                  <ChameleonMark size={30} className={styles.tileIcon} />
+                <div className={styles.titleCol}>
+                  <span className={styles.rowIndex}>{String(i + 1).padStart(2, "0")}</span>
+                  <h3 className={styles.rowTitle}>{service.title}</h3>
                 </div>
                 <div className={styles.rowBody}>
-                  <span className={styles.rowIndex}>({String(i + 1).padStart(2, "0")})</span>
-                  <h3 className={styles.rowTitle}>{service.title}</h3>
                   <p className={styles.rowText}>{service.description}</p>
                   {service.items?.length > 0 && (
                     <ul className={styles.rowItems}>
