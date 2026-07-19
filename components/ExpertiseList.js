@@ -58,7 +58,7 @@ export default async function ExpertiseList() {
         <Reveal key={service.title} delay={i * 60}>
           <article className={styles.block}>
             <div className={styles.titleRow}>
-              <span className={styles.number}>({String(i + 1).padStart(2, "0")})</span>
+              <span className={styles.number}>{String(i + 1).padStart(2, "0")}</span>
               <h2 className={styles.title}>{service.title}</h2>
             </div>
             <div className={styles.row}>

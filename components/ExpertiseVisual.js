@@ -35,15 +35,15 @@ export default function ExpertiseVisual({ index, className }) {
     // joue une fois : la position suit directement la progression du scroll).
     const tween = gsap.fromTo(
       el,
-      { xPercent: 22, opacity: 0.5 },
+      { xPercent: 55, opacity: 0.25 },
       {
         xPercent: 0,
         opacity: 1,
         ease: "none",
         scrollTrigger: {
           trigger: el,
-          start: "top bottom",
-          end: "top 50%",
+          start: "top 92%",
+          end: "top 45%",
           scrub: true,
         },
       }
