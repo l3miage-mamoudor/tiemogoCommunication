@@ -125,6 +125,16 @@
   color: var(--orange);
 }
 
+.social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.social svg {
+  flex-shrink: 0;
+}
+
 .bottom {
   display: flex;
   justify-content: space-between;

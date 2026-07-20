@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ChameleonAura from "./ChameleonAura";
+import SocialIcon from "./SocialIcon";
 import styles from "./Footer.module.css";
 import { TAGLINE } from "@/lib/content";
 
@@ -15,9 +16,9 @@ const NAV_LINKS = [
 
 // Remplace par les vrais réseaux sociaux du cabinet
 const SOCIALS = [
-  { label: "Facebook", href: "#" },
-  { label: "Instagram", href: "#" },
-  { label: "LinkedIn", href: "#" },
+  { label: "Facebook", type: "facebook", href: "#" },
+  { label: "Instagram", type: "instagram", href: "#" },
+  { label: "LinkedIn", type: "linkedin", href: "#" },
 ];
 
 export default function Footer() {
@@ -43,7 +44,7 @@ export default function Footer() {
       <div className={styles.info}>
         <div className="container">
           <div className={styles.top}>
-            <Link href="/" className={styles.brand}>
+            <Link href="/" className={styles.brand} aria-label="Tiemogo Communication">
               <Image
                 src="/logo-mark.jpg"
                 alt="Tiemogo Communication"
@@ -51,7 +52,6 @@ export default function Footer() {
                 height={30}
                 className={styles.logo}
               />
-              <span>tiemogo communication</span>
             </Link>
             <span className={styles.badge}>{TAGLINE}</span>
           </div>
@@ -72,7 +72,14 @@ export default function Footer() {
               <p className={styles.colTitle}>Suivez-nous</p>
               <div className={styles.colLinks}>
                 {SOCIALS.map((s) => (
-                  <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer">
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.social}
+                  >
+                    <SocialIcon type={s.type} />
                     {s.label}
                   </a>
                 ))}
@@ -89,8 +96,7 @@ export default function Footer() {
           </div>
 
           <div className={styles.bottom}>
-            <span>Tiemogo Communication</span>
-            <span>© {new Date().getFullYear()} Tous droits réservés</span>
+            <span>© {new Date().getFullYear()} Tiemogo Communication — Tous droits réservés</span>
           </div>
         </div>
       </div>
