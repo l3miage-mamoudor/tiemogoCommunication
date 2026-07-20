@@ -1,13 +1,11 @@
 .footer {
   border-top: 1px solid var(--line);
   background: var(--ink);
-  padding: 0 0 32px;
 }
 
 .cta {
   position: relative;
-  padding: 120px 0 80px;
-  border-bottom: 1px solid var(--line);
+  padding: 120px 0 96px;
   overflow: hidden;
 }
 
@@ -39,12 +37,20 @@
   margin-top: 40px;
 }
 
+/* Bande utilitaire (nav, contact, mentions) : fond distinct du CTA
+   au-dessus pour que les deux ne se lisent plus comme un seul bloc. */
+.info {
+  background: var(--ink-soft);
+  padding-bottom: 32px;
+}
+
 .top {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 40px 0;
+  padding: 32px 0;
   border-bottom: 1px solid var(--line);
 }
 
@@ -64,16 +70,11 @@
   border-radius: 8px;
 }
 
-.badge {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--paper);
-  background: var(--orange);
-  padding: 8px 16px;
-  border-radius: 100px;
+.tagline {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--text-muted-dark);
 }
 
 .columns {
