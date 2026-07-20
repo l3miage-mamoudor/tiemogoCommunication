@@ -26,8 +26,7 @@ export default function Hero() {
         <h1 className={styles.headline}>
           Une marque ne parle pas.
           <br />
-          Elle sait
-          <br />
+          Elle sait{" "}
           <span className={styles.verbWrap} aria-live="polite">
             <span
               key={index}
