@@ -1,4 +1,5 @@
 import Link from "next/link";
+import RotatingBadge from "./RotatingBadge";
 import styles from "./Manifesto.module.css";
 import { ORIGIN_STORY } from "@/lib/content";
 
@@ -11,7 +12,8 @@ export default function Manifesto() {
         <span className={styles.corner} data-pos="bl" aria-hidden="true" />
         <span className={styles.corner} data-pos="br" aria-hidden="true" />
 
-        <p className={styles.wordmark}>tiemogo communication</p>
+        <RotatingBadge />
+        <p className={styles.wordmark}>Tiemogo Communication</p>
         <p className={styles.lead}>{ORIGIN_STORY.lead}</p>
         {ORIGIN_STORY.paragraphs.map((paragraph, i) => (
           <p key={i} className={styles.text}>

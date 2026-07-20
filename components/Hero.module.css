@@ -11,22 +11,14 @@
   max-width: 980px;
 }
 
-.topRow {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  animation: heroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
-}
-
 .headline {
-  margin-top: 24px;
   font-family: var(--font-body);
   font-weight: 900;
   font-size: clamp(38px, 7.4vw, 104px);
   line-height: 1.02;
   letter-spacing: -0.02em;
   color: var(--paper);
-  animation: heroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+  animation: heroIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
 }
 
 .verbWrap {

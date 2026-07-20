@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import RotatingBadge from "./RotatingBadge";
 import ChameleonAura from "./ChameleonAura";
 import styles from "./Hero.module.css";
 import { hueForIndex } from "@/lib/palette";
@@ -24,10 +23,6 @@ export default function Hero() {
     <section id="top" className={styles.hero}>
       <ChameleonAura />
       <div className={`container ${styles.inner}`}>
-        <div className={styles.topRow}>
-          <RotatingBadge compact />
-        </div>
-
         <h1 className={styles.headline}>
           Une marque ne parle pas.
           <br />

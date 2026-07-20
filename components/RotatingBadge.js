@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./RotatingBadge.module.css";
 
-const RING_TEXT = "AGENCE CONSEIL EN COMMUNICATION •";
+const RING_TEXT = "AGENCE DE CONSEIL EN COMMUNICATION";
 
 // Version vectorielle du sceau de marque : un simple filet fin qui tourne
 // autour du logomark, plutôt qu'un disque plein façon tampon artisanal —
