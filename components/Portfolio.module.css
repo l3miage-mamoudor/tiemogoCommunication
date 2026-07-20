@@ -17,6 +17,12 @@
   }
 }
 
+.card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
 .thumb {
   position: relative;
   aspect-ratio: 16 / 10;

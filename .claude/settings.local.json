@@ -25,7 +25,8 @@
       "Bash(powershell -Command \"Get-Process node -ErrorAction SilentlyContinue | Select-Object Id,Path\")",
       "Bash(curl -s \"https://9dwvb0rr.apicdn.sanity.io/v2026-01-01/data/query/production?query=*%5B_type%20%3D%3D%20%22testimonial%22%5D\")",
       "mcp__visualize__read_me",
-      "Bash(powershell -Command \"Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue | Select-Object State,OwningProcess\")"
+      "Bash(powershell -Command \"Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue | Select-Object State,OwningProcess\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\mamou\\\\OneDrive\\\\Documents\\\\Site TCM\\\\agence-site\\\\agence-site\\\\app\\\\\\(site\\)\\\\realisations\\\\[slug]\")"
     ]
   }
 }

@@ -31,6 +31,9 @@ export default function Stats() {
   return (
     <section className="section">
       <div className="container">
+        <p className="eyebrow">En chiffres</p>
+        <h2 className={styles.title}>Ce que ces années nous ont appris</h2>
+
         <div className={styles.grid}>
           {STATS.map((stat, i) => (
             <StatItem key={stat.label} stat={stat} delay={i * 80} />

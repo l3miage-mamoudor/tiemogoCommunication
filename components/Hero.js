@@ -26,7 +26,6 @@ export default function Hero() {
       <div className={`container ${styles.inner}`}>
         <div className={styles.topRow}>
           <RotatingBadge compact />
-          <p className="eyebrow">Tiemogo Communication</p>
         </div>
 
         <h1 className={styles.headline}>

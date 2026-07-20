@@ -1,4 +1,11 @@
+.title {
+  margin-top: 20px;
+  max-width: 560px;
+  font-size: clamp(28px, 4vw, 44px);
+}
+
 .grid {
+  margin-top: 56px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border: 1px solid var(--line);

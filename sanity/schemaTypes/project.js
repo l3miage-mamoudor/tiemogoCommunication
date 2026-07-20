@@ -10,6 +10,14 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "slug",
+      title: "Slug (URL)",
+      type: "slug",
+      options: { source: "client", maxLength: 96 },
+      description: "Génère l'adresse de la page dédiée du projet (/realisations/...)",
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: "category",
       title: "Expertise",
       type: "string",
@@ -35,6 +43,13 @@ export default {
       title: "Image",
       type: "image",
       options: { hotspot: true },
+    },
+    {
+      name: "description",
+      title: "Description longue",
+      type: "array",
+      of: [{ type: "block" }],
+      description: "Affichée sur la page dédiée du projet (/realisations/...)",
     },
     {
       name: "order",

@@ -30,8 +30,8 @@ function ProjectCard({ project }) {
   const hue = hueForSeed(project.client);
   const patternId = `portfolio-scale-${hashSeed(project.client)}`;
 
-  return (
-    <article className={styles.card}>
+  const body = (
+    <>
       <div className={styles.thumb} style={{ "--tile-hue": hue }}>
         {project.image ? (
           <img
@@ -46,13 +46,27 @@ function ProjectCard({ project }) {
             </span>
           </>
         )}
-        <span className={styles.hoverLink}>
-          Voir le projet <span aria-hidden="true">→</span>
-        </span>
+        {project.slug && (
+          <span className={styles.hoverLink}>
+            Voir le projet <span aria-hidden="true">→</span>
+          </span>
+        )}
       </div>
       <p className={styles.client}>{project.client}</p>
       <p className={styles.sector}>{project.sector}</p>
-    </article>
+    </>
+  );
+
+  // Sans slug (anciennes fiches Sanity créées avant l'ajout du champ), la
+  // carte reste décorative plutôt que de pointer vers une page inexistante.
+  if (!project.slug) {
+    return <article className={styles.card}>{body}</article>;
+  }
+
+  return (
+    <Link href={`/realisations/${project.slug}`} className={styles.card}>
+      {body}
+    </Link>
   );
 }
 
