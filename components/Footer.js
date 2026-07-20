@@ -53,7 +53,7 @@ export default function Footer() {
               />
               <span>tiemogo communication</span>
             </Link>
-            <span className={styles.tagline}>{TAGLINE}</span>
+            <span className={styles.badge}>{TAGLINE}</span>
           </div>
 
           <div className={styles.columns}>
