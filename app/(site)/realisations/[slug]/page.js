@@ -33,17 +33,19 @@ async function getProject(slug) {
 }
 
 export async function generateMetadata({ params }) {
-  const project = await getProject(params.slug);
+  const { slug } = await params;
+  const project = await getProject(slug);
   if (!project) return { title: "Réalisation" };
   return {
     title: project.client,
     description: project.sector || `${project.client} — une réalisation Tiemogo Communication.`,
-    alternates: { canonical: `/realisations/${params.slug}` },
+    alternates: { canonical: `/realisations/${slug}` },
   };
 }
 
 export default async function ProjectPage({ params }) {
-  const project = await getProject(params.slug);
+  const { slug } = await params;
+  const project = await getProject(slug);
 
   if (!project) {
     return (

@@ -51,12 +51,13 @@ async function getPost(slug) {
 }
 
 export async function generateMetadata({ params }) {
-  const post = await getPost(params.slug);
+  const { slug } = await params;
+  const post = await getPost(slug);
   if (!post) return { title: "Article" };
   return {
     title: post.title,
     description: post.excerpt,
-    alternates: { canonical: `/blog/${params.slug}` },
+    alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       type: "article",
       title: post.title,
@@ -67,7 +68,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function PostPage({ params }) {
-  const post = await getPost(params.slug);
+  const { slug } = await params;
+  const post = await getPost(slug);
 
   if (!post) {
     return (
