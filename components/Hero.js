@@ -6,7 +6,6 @@ import ChameleonAura from "./ChameleonAura";
 import styles from "./Hero.module.css";
 import { hueForIndex } from "@/lib/palette";
 
-// Verbes alignés sur le positionnement réel de Tiemogo : adaptation et sur-mesure
 const VERBS = ["s'adapter.", "se différencier.", "marquer.", "durer."];
 
 export default function Hero() {

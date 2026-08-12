@@ -20,16 +20,71 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.tiemogo.com";
+
+const TITLE = "Tiemogo Communication — Observer. Comprendre. Révéler.";
+const DESCRIPTION =
+  "Comme le caméléon, nous devenons vous pour mieux vous révéler. Tiemogo Communication accompagne les entreprises qui veulent transformer la complexité en clarté : conseil stratégique, création, digital, édition et print, événementiel.";
+
 export const metadata = {
-  title: "Tiemogo Communication — Observer. Comprendre. Révéler.",
-  description:
-    "Comme le caméléon, nous devenons vous pour mieux vous révéler. Tiemogo Communication accompagne les entreprises qui veulent transformer la complexité en clarté : conseil stratégique, création, digital, édition et print, événementiel.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: TITLE,
+    template: "%s — Tiemogo Communication",
+  },
+  description: DESCRIPTION,
+  keywords: [
+    "agence de communication",
+    "conseil stratégique",
+    "communication digitale",
+    "relations presse",
+    "événementiel",
+    "édition et print",
+  ],
+  authors: [{ name: "Tiemogo Communication" }],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: SITE_URL,
+    siteName: "Tiemogo Communication",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+const ORGANIZATION_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Tiemogo Communication",
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo-mark.jpg`,
+  description: DESCRIPTION,
+  email: "iitiemogo@gmail.com",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="fr" className={`${archivo.variable} ${fraunces.variable}`}>
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSON_LD) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

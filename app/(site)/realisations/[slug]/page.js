@@ -34,8 +34,11 @@ async function getProject(slug) {
 
 export async function generateMetadata({ params }) {
   const project = await getProject(params.slug);
+  if (!project) return { title: "Réalisation" };
   return {
-    title: project ? `${project.client} — Tiemogo Communication` : "Réalisation",
+    title: project.client,
+    description: project.sector || `${project.client} — une réalisation Tiemogo Communication.`,
+    alternates: { canonical: `/realisations/${params.slug}` },
   };
 }
 

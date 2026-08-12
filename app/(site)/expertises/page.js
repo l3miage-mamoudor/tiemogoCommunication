@@ -2,7 +2,10 @@ import PageHeader from "@/components/PageHeader";
 import ExpertiseList from "@/components/ExpertiseList";
 
 export const metadata = {
-  title: "Expertises — Tiemogo Communication",
+  title: "Expertises",
+  description:
+    "Conseil stratégique, création, digital, édition et print, événementiel : cinq domaines d'intervention pensés pour construire un discours cohérent du premier au dernier point de contact.",
+  alternates: { canonical: "/expertises" },
 };
 
 export default function ExpertisesPage() {

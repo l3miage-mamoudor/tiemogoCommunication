@@ -13,7 +13,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(1) brightness(0.65) contrast(1.1);
+  filter: brightness(0.65) contrast(1.1);
   animation: slowZoom 14s ease-in-out infinite alternate;
 }
 

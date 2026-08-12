@@ -2,7 +2,10 @@ import PageHeader from "@/components/PageHeader";
 import Team from "@/components/Team";
 
 export const metadata = {
-  title: "L'agence — Tiemogo Communication",
+  title: "L'agence",
+  description:
+    "Tiemogo Communication : une agence de communication qui prend le temps de comprendre votre activité, votre vision et vos objectifs avant de construire une stratégie sur mesure.",
+  alternates: { canonical: "/agence" },
 };
 
 export default function AgencePage() {

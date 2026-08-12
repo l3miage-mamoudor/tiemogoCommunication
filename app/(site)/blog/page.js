@@ -3,7 +3,10 @@ import Blog from "@/components/Blog";
 import { BLOG_INTRO } from "@/lib/content";
 
 export const metadata = {
-  title: "Blog — Tiemogo Communication",
+  title: "Blog",
+  description:
+    "Analyses et conseils de Tiemogo Communication sur la stratégie de marque, les relations presse et la gestion de crise en communication.",
+  alternates: { canonical: "/blog" },
 };
 
 export default function BlogPage() {

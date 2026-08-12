@@ -52,7 +52,18 @@ async function getPost(slug) {
 
 export async function generateMetadata({ params }) {
   const post = await getPost(params.slug);
-  return { title: post ? `${post.title} — Tiemogo Communication` : "Article" };
+  if (!post) return { title: "Article" };
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: { canonical: `/blog/${params.slug}` },
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.excerpt,
+      publishedTime: post.date,
+    },
+  };
 }
 
 export default async function PostPage({ params }) {

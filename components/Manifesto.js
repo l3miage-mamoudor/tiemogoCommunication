@@ -13,7 +13,10 @@ export default function Manifesto() {
         <span className={styles.corner} data-pos="br" aria-hidden="true" />
 
         <RotatingBadge />
-        <p className={styles.wordmark}>Tiemogo Communication</p>
+        <div className={styles.wordmarkGroup}>
+          <p className={styles.wordmark}>Tiemogo Communication</p>
+          <p className={styles.tagline}>À l'image de vos besoins</p>
+        </div>
         <p className={styles.lead}>{ORIGIN_STORY.lead}</p>
         {ORIGIN_STORY.paragraphs.map((paragraph, i) => (
           <p key={i} className={styles.text}>
