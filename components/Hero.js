@@ -40,7 +40,7 @@ export default function Hero() {
         <div className={styles.bottom}>
           <div className={styles.statsInline}>
             <div>
-              <p className={styles.statValue}>12+</p>
+              <p className={styles.statValue}>4+</p>
               <p className={styles.statLabel}>
                 Années
                 <br />
