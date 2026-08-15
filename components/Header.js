@@ -53,7 +53,10 @@ export default function Header() {
           <span className={styles.logoWord}>Tiemogo Communication</span>
         </Link>
 
-        <nav className={`${styles.nav} ${open ? styles.navOpen : ""}`}>
+        <nav
+          className={styles.nav}
+          style={{ opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none" }}
+        >
           {LINKS.map((link) => {
             const active = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
             return (
@@ -61,7 +64,7 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className={active ? styles.active : ""}
+                className={`${styles.navLink} ${active ? styles.active : ""}`}
                 aria-current={active ? "page" : undefined}
               >
                 {link.label}

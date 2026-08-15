@@ -7,14 +7,6 @@
   background: transparent;
   border-bottom: 1px solid transparent;
   transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
-  /* Force sa propre couche de composition GPU : sur Safari iOS, un
-     `position: fixed` combiné à `backdrop-filter` se désynchronise
-     pendant le scroll rapide (le header "se détache" et laisse voir le
-     contenu de la page derrière). translateZ(0) fige le header sur sa
-     propre couche, indépendante du reste de la page. */
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
 }
 
 .scrolled {
@@ -54,12 +46,12 @@
   font-size: 14px;
 }
 
-.nav a {
+.navLink {
   position: relative;
   transition: color 0.2s ease;
 }
 
-.nav a::after {
+.navLink::after {
   content: "";
   position: absolute;
   left: 0;
@@ -72,11 +64,11 @@
   transition: transform 0.3s ease;
 }
 
-.nav a:hover {
+.navLink:hover {
   color: var(--orange);
 }
 
-.nav a:hover::after {
+.navLink:hover::after {
   transform: scaleX(1);
   transform-origin: left;
 }
@@ -124,7 +116,6 @@
   .nav {
     position: fixed;
     inset: 0;
-    z-index: -1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -132,22 +123,14 @@
     gap: 20px;
     padding: 0 32px;
     background: var(--ink);
-    opacity: 0;
-    pointer-events: none;
     transition: opacity 0.35s ease;
   }
 
-  .nav a {
+  .navLink {
     font-family: var(--font-script);
     font-style: italic;
     font-weight: 400;
     font-size: clamp(28px, 9vw, 44px);
-  }
-
-  .navOpen {
-    z-index: 90;
-    opacity: 1;
-    pointer-events: auto;
   }
 
   .ctaMobile {
