@@ -2,6 +2,7 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"main": ".open-next/worker.js",
 	"name": "agence-ardent",
+	"workers_dev": true,
 	"compatibility_date": "2026-08-12",
 	"compatibility_flags": [
 		"nodejs_compat",
@@ -11,6 +12,10 @@
 		"directory": ".open-next/assets",
 		"binding": "ASSETS"
 	},
+	"routes": [
+		{ "pattern": "tiemogocommaker.com", "custom_domain": true },
+		{ "pattern": "www.tiemogocommaker.com", "custom_domain": true }
+	],
 	"services": [
 		{
 			// Self-reference service binding, the service name must match the worker name
