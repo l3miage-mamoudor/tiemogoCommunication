@@ -55,23 +55,20 @@ export default function ChameleonReveal() {
       gsap.set(duotoneRef.current, { opacity: 0 });
       gsap.set(textRef.current, { opacity: 0, y: 16 });
 
-      const scrollTrigger = {
-        trigger: sectionRef.current,
-        start: "top 85%",
-        end: "top 35%",
-        scrub: true,
-      };
-
-      const imgTween = gsap.to(imgRef.current, {
-        filter: GRAYSCALE_REVEALED,
-        ease: "none",
-        scrollTrigger,
-      });
-
+      // Sur mobile, on n'anime plus le filter CSS de l'image grise pendant
+      // le scroll (coûteux à recalculer à chaque frame sur Safari iOS —
+      // ça allait jusqu'à faire perdre au header sa position fixe pendant
+      // le scroll). Seule l'opacité du calque duotone (déjà filtré, statique)
+      // est animée : bien moins cher, même effet visuel de révélation.
       const duotoneTween = gsap.to(duotoneRef.current, {
         opacity: 1,
         ease: "none",
-        scrollTrigger,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 85%",
+          end: "top 35%",
+          scrub: true,
+        },
       });
 
       gsap.to(textRef.current, {
@@ -84,7 +81,6 @@ export default function ChameleonReveal() {
       });
 
       return () => {
-        imgTween.scrollTrigger?.kill();
         duotoneTween.scrollTrigger?.kill();
       };
     });
