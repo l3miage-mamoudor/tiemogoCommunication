@@ -52,11 +52,11 @@ export default function Contact() {
             <div className={styles.infos}>
               <div>
                 <p className={styles.infoLabel}>Email</p>
-                <p>iitiemogo@gmail.com</p>
+                <p>contact@tiemogocommaker.com</p>
               </div>
               <div>
                 <p className={styles.infoLabel}>Téléphone</p>
-                <p>01 23 45 67 89</p>
+                <p>06 58 62 94 71</p>
               </div>
               <div>
                 <p className={styles.infoLabel}>Adresse</p>

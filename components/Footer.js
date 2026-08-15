@@ -89,8 +89,8 @@ export default function Footer() {
             <div>
               <p className={styles.colTitle}>Contact</p>
               <div className={styles.colLinks}>
-                <span>contact@tiemogo.com</span>
-                <span>01 23 45 67 89</span>
+                <span>contact@tiemogocommaker.com</span>
+                <span>06 58 62 94 71</span>
               </div>
             </div>
           </div>

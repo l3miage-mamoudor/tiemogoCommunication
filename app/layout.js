@@ -72,7 +72,7 @@ const ORGANIZATION_JSON_LD = {
   url: SITE_URL,
   logo: `${SITE_URL}/logo-mark.jpg`,
   description: DESCRIPTION,
-  email: "iitiemogo@gmail.com",
+  email: "contact@tiemogocommaker.com",
 };
 
 export default function RootLayout({ children }) {
