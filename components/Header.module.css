@@ -123,6 +123,11 @@
     gap: 20px;
     padding: 0 32px;
     background: var(--ink);
+    /* Valeur par défaut avant que le JS ne détermine isMobile côté client
+       (évite un flash du menu plein écran au premier rendu) — le style
+       inline dans Header.js prend ensuite le relais pour piloter l'ouverture. */
+    opacity: 0;
+    pointer-events: none;
     transition: opacity 0.35s ease;
   }
 

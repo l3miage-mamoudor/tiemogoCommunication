@@ -17,6 +17,7 @@ const LINKS = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -26,6 +27,18 @@ export default function Header() {
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Correspond à la media query mobile de Header.module.css (860px) —
+    // le style inline ci-dessous ne doit s'appliquer qu'en dessous de ce
+    // seuil, sinon il masque le menu desktop en permanence (open y reste
+    // toujours à false, faute de bouton burger pour le faire passer à true).
+    const mq = window.matchMedia("(max-width: 860px)");
+    setIsMobile(mq.matches);
+    const handleChange = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handleChange);
+    return () => mq.removeEventListener("change", handleChange);
   }, []);
 
   useEffect(() => {
@@ -55,7 +68,7 @@ export default function Header() {
 
         <nav
           className={styles.nav}
-          style={{ opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none" }}
+          style={isMobile ? { opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none" } : undefined}
         >
           {LINKS.map((link) => {
             const active = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
