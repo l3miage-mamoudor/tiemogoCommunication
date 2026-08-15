@@ -2,7 +2,7 @@ import { client } from "@/lib/sanity/client";
 import { postsQuery, projectsQuery } from "@/lib/sanity/queries";
 import { FALLBACK_PROJECTS } from "@/lib/content";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.tiemogo.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.tiemogocommaker.com";
 
 const FALLBACK_POST_SLUGS = [
   "coherence-de-marque",

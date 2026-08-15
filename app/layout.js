@@ -21,7 +21,7 @@ const fraunces = Fraunces({
 });
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.tiemogo.com";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.tiemogocommaker.com";
 
 const TITLE = "Tiemogo Communication — Observer. Comprendre. Révéler.";
 const DESCRIPTION =
