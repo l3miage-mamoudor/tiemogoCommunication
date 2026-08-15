@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -19,6 +19,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const pathname = usePathname();
+  const navigatingRef = useRef(false);
 
   useEffect(() => {
     function handleScroll() {
@@ -53,6 +54,7 @@ export default function Header() {
     // seulement Safari) — on fige le body à sa position de scroll actuelle
     // plutôt qu'un simple overflow:hidden, plus fiable sur mobile.
     if (!open) return;
+    navigatingRef.current = false;
     const scrollY = window.scrollY;
     document.body.style.position = "fixed";
     document.body.style.top = `-${scrollY}px`;
@@ -63,7 +65,13 @@ export default function Header() {
       document.body.style.top = "";
       document.body.style.left = "";
       document.body.style.right = "";
-      window.scrollTo(0, scrollY);
+      // Si la fermeture vient d'un clic sur un lien (changement de page),
+      // on ne remet pas l'ancienne position de scroll : la nouvelle page
+      // doit démarrer normalement, pas reprendre le scroll de la page
+      // précédente.
+      if (!navigatingRef.current) {
+        window.scrollTo(0, scrollY);
+      }
     };
   }, [open]);
 
@@ -98,7 +106,10 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  navigatingRef.current = true;
+                  setOpen(false);
+                }}
                 className={`${styles.navLink} ${active ? styles.active : ""}`}
                 aria-current={active ? "page" : undefined}
               >
@@ -106,7 +117,14 @@ export default function Header() {
               </Link>
             );
           })}
-          <Link href="/contact" className={`btn btn--pill ${styles.ctaMobile}`}>
+          <Link
+            href="/contact"
+            onClick={() => {
+              navigatingRef.current = true;
+              setOpen(false);
+            }}
+            className={`btn btn--pill ${styles.ctaMobile}`}
+          >
             Parlons de votre projet
           </Link>
         </nav>
