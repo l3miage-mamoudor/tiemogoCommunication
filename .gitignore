@@ -10,3 +10,7 @@ node_modules
 .wrangler
 .dev.vars*
 !.dev.vars.example
+
+# Sanity Studio deploy output
+dist
+.sanity
