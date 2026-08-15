@@ -45,6 +45,28 @@ export default function Header() {
     setOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    // Verrouille le scroll de la page tant que le menu plein écran est
+    // ouvert. Sans ça, le fond reste scrollable derrière un `position:
+    // fixed`, ce qui produit un rendu incohérent dès qu'on n'est pas tout
+    // en haut de la page (constaté sur tous les navigateurs, pas
+    // seulement Safari) — on fige le body à sa position de scroll actuelle
+    // plutôt qu'un simple overflow:hidden, plus fiable sur mobile.
+    if (!open) return;
+    const scrollY = window.scrollY;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      window.scrollTo(0, scrollY);
+    };
+  }, [open]);
+
   // Le header transparent n'est lisible que sur l'accueil, où il flotte
   // au-dessus du Hero sombre. Sur les autres pages, PageHeader peut être
   // clair ("paper") — le texte blanc du header y serait invisible tant
