@@ -15,15 +15,11 @@
   "dependencies": {
     "@portabletext/react": "^3",
     "@sanity/image-url": "^1",
-    "@sanity/vision": "^3",
     "gsap": "^3.15.0",
     "next": "^15.5.23",
     "next-sanity": "^9",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-is": "^19.2.8",
-    "sanity": "^3",
-    "styled-components": "^6.5.2"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@opennextjs/cloudflare": "^1.20.2",

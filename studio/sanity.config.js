@@ -1,17 +1,16 @@
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
-import { schemaTypes } from "./sanity/schemaTypes";
+import { schemaTypes } from "./schemaTypes";
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID || "9dwvb0rr";
+const dataset = process.env.SANITY_STUDIO_DATASET || "production";
 
 export default defineConfig({
   name: "default",
   title: "Tiemogo Communication",
   projectId,
   dataset,
-  basePath: "/studio",
   plugins: [structureTool(), visionTool()],
   schema: { types: schemaTypes },
 });
